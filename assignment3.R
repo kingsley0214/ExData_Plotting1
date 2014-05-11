@@ -1,0 +1,11 @@
+setwd("C:\\rClass\\Exploratory")
+file <- "./data/household_power_consumption.txt"
+data <- read.table(file,sep=";",header=TRUE,na.strings="?")
+data$Date2 <- as.Date(data$Date, "%d/%m/%Y")
+data2 <- subset(data, Date2=="2007/2/1"|Date2=="2007/2/2")
+png('Assignment1Plot3.png')
+plot(data2$DateTime,data2$Sub_metering_1,type='l',ylab="Energy sub metering",main="",cex.lab=.75,cex.axis=.75,cex.main=.8,xlab = "")
+lines(data2$DateTime,data2$Sub_metering_2,col="red")
+lines(data2$DateTime,data2$Sub_metering_3,col="blue")
+legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=1,col=c("black","red","blue"))
+dev.off()
